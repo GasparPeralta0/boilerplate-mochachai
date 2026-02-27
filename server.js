@@ -104,11 +104,11 @@ function testFilter(tests, type, n) {
       out = tests;
   }
 
-  if (n !== undefined) {
-    const i = parseInt(n, 10);
-    if (Number.isNaN(i)) return null;
-    return out[i] ?? null;   // 🔥 importante: NO devolver el array entero
-  }
+ if (n !== undefined) {
+  const i = parseInt(n, 10);
+  if (Number.isNaN(i)) return [];
+  return out[i] ? out[i] : [];
+}
 
   return out;
 }

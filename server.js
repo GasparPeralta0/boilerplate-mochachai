@@ -91,7 +91,7 @@ app.listen(port, function () {
 module.exports = app;
 
 function testFilter(tests, type, n) {
-   let out;
+  let out;
   switch (type) {
     case 'unit':
       out = tests.filter(t => t.context && t.context.includes('Unit Tests'));
@@ -102,10 +102,12 @@ function testFilter(tests, type, n) {
     default:
       out = tests;
   }
- 
+
   if (n !== undefined) {
     const i = parseInt(n, 10);
-    return Number.isNaN(i) ? out : (out[i] || out);
+    if (Number.isNaN(i)) return null;
+    return out[i] ?? null;   // 🔥 importante: NO devolver el array entero
   }
+
   return out;
 }

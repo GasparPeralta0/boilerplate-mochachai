@@ -165,7 +165,11 @@ test('#isTrue, #isNotTrue', function () {
       assert.fail(airlinePlane, Plane);
       assert.fail(airlinePlane, Object);
       assert.fail(myCar.wheels, String);
-    });
+    })
+    })
+  })
   }
-  )}
+)
+
+
    // -----------------------------------------------------------------------------

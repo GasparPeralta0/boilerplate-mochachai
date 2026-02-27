@@ -146,11 +146,11 @@ test('#equal, #notEqual', function () {
   const airlinePlane = new Plane();
 
   suite('Objects', function () {
-    // #16
+// #16
 test('#property, #notProperty', function () {
-  assert.property(myCar, 'wheels', 'Cars have wheels');
-  assert.notProperty(myCar, 'wings', "Cars don't have wings");
+  assert.notProperty(myCar, 'wings', 'A car has not wings');
   assert.property(airlinePlane, 'engines', 'planes have engines');
+  assert.property(airlinePlane, 'wings', 'planes have wings');
 });
     // #17
     test('#typeOf, #notTypeOf', function () {

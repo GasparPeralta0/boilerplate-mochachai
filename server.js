@@ -51,25 +51,26 @@ app.route('/travellers').put(travellers);
 
 // --- FCC test runner API ---
 let error;
-app.get(
-  '/_api/get-tests',
-  cors(),
-  function (req, res, next) {
-    if (error) return res.json({ status: 'unavailable' });
-    next();
-  },
-  function (req, res, next) {
-    if (!runner.report) return res.json([]);
-    res.json(testFilter(runner.report, req.query.type, req.query.n));
-  },
-  function (req, res) {
-    runner.on('done', function () {
-      process.nextTick(() =>
-        res.json(testFilter(runner.report, req.query.type, req.query.n))
-      );
-    });
+app.get('/_api/get-tests', cors(), function (req, res) {
+  if (error) return res.json({ status: 'unavailable' });
+
+  // Si ya hay report, devolvelo
+  if (runner.report && Array.isArray(runner.report)) {
+    return res.json(testFilter(runner.report, req.query.type, req.query.n));
   }
-);
+
+  // Si no hay report todavía, esperamos a que termine
+  runner.once('done', function () {
+    const report = Array.isArray(runner.report) ? runner.report : [];
+    return res.json(testFilter(report, req.query.type, req.query.n));
+  });
+
+  // Failsafe: si por alguna razón no dispara "done", devolvemos [] (evita null)
+  setTimeout(() => {
+    const report = Array.isArray(runner.report) ? runner.report : [];
+    return res.json(testFilter(report, req.query.type, req.query.n));
+  }, 2000);
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, function () {

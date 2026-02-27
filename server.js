@@ -102,8 +102,17 @@ function testFilter(tests, type, n) {
       break;
     default:
       out = tests;
-   }
+  }
 
-   if (n !== undefined) return out[n] || out;
+  // 🔥 Ordenar por número de challenge (#1, #2, #3...)
+  out = out.slice().sort((a, b) => {
+    const getNumber = (t) => {
+      const match = t.title.match(/#(\d+)/);
+      return match ? parseInt(match[1], 10) : 999;
+    };
+    return getNumber(a) - getNumber(b);
+  });
+
+  if (n !== undefined) return out[n] || out;
   return out;
 }

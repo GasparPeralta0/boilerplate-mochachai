@@ -152,13 +152,15 @@ test('#property, #notProperty', function () {
   assert.property(airlinePlane, 'engines', 'planes have engines');
   assert.property(airlinePlane, 'wings', 'planes have wings');
 });
+
    // #17
 test('#typeOf, #notTypeOf', function () {
   assert.typeOf(myCar, 'object', 'myCar is an object');
   assert.typeOf(myCar.model, 'string', 'model is a string');
-  assert.typeOf(myCar.wheels, 'number', 'wheels is a number');
+  assert.fail(myCar.wheels, 'number', 'wheels is a number'); // ← esta es la tercera
   assert.typeOf(airlinePlane.engines, 'array', 'engines is an array');
   assert.typeOf(myCar.wings, 'undefined', 'wings is undefined');
+
 });
     // #18
     test('#instanceOf, #notInstanceOf', function () {

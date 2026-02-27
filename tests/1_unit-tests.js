@@ -11,7 +11,7 @@ test('#isNull, #isNotNull', function () {
 })
 
 })
-});
+})
 
 // #2
 test('#isDefined, #isUndefined', function () {

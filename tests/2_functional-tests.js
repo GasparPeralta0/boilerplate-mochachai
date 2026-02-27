@@ -7,7 +7,7 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
 const Browser = require('zombie');
-Browser.site = 'http://0.0.0.0:3000';
+Browser.site = 'http://0.0.0.0:' + (process.env.PORT || 3000);
 
 suite('Functional Tests', function () {
   this.timeout(5000);

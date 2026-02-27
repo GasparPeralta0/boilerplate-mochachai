@@ -98,8 +98,11 @@ function testFilter(tests, type, n) {
       out = tests.filter(t => t.context && t.context.includes('Unit Tests'));
       break;
     case 'functional':
-      out = tests.filter(t => t.context && t.context.includes('Functional Tests'));
-      break;
+  out = tests.filter(t =>
+    t.context &&
+    (t.context.includes('Functional Tests') || t.context.includes('Zombie'))
+  );
+  break;
     default:
       out = tests;
   }

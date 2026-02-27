@@ -59,7 +59,7 @@ app.get(
     next();
   },
   function (req, res, next) {
-    if (!runner.report) return next();
+    if (!runner.report) return res.json([]);
     res.json(testFilter(runner.report, req.query.type, req.query.n));
   },
   function (req, res) {

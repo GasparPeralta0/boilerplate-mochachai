@@ -163,10 +163,10 @@ test('#typeOf, #notTypeOf', function () {
 });
     // #18
 test('#instanceOf, #notInstanceOf', function () {
-  assert.instanceOf(myCar, Car, 'myCar is instance of Car');
-  assert.instanceOf(airlinePlane, Plane, 'airlinePlane is instance of Plane');
-  assert.instanceOf(airlinePlane, Object, 'airlinePlane is instance of Object');
-  assert.notInstanceOf(myCar.wheels, String, 'myCar.wheels is not instance of String');
+  assert.notInstanceOf(myCar, Plane, 'myCar is not an instance of Plane');
+  assert.instanceOf(airlinePlane, Plane, 'airlinePlane is an instance of Plane');
+  assert.instanceOf(airlinePlane, Object, 'airlinePlane is an instance of Object');
+  assert.notInstanceOf(myCar.wheels, String, 'myCar.wheels is not an instance of String');
 });
     })
   })

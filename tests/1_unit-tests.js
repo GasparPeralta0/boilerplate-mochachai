@@ -157,7 +157,7 @@ test('#property, #notProperty', function () {
 test('#typeOf, #notTypeOf', function () {
   assert.typeOf(myCar, 'object', 'myCar is an object');
   assert.typeOf(myCar.model, 'string', 'model is a string');
-  assert.typeOf(myCar.wheels, 'number', 'wheels is a number');
+  assert.notTypeOf(airlinePlane.wings, 'string', 'Plane.wings is a Number (not a String)'); // ← la 3ra
   assert.typeOf(airlinePlane.engines, 'array', 'engines is an array');
   assert.typeOf(myCar.wings, 'undefined', 'wings is undefined');
 });

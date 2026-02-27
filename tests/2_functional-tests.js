@@ -22,15 +22,14 @@ suite('Functional Tests', function () {
     });
     // #2
     test('Test GET /hello with your name', function (done) {
-      chai
-        .request(server)
-        .keepOpen()
-        .get('/hello?name=xy_z')
-        .end(function (err, res) {
-          assert.fail(res.status, 200);
-          assert.fail(res.text, 'hello xy_z');
-          done();
-        });
+     chai.request(server)
+  .keepOpen()
+  .get('/hello?name=John')
+  .end(function(err, res) {
+    assert.equal(res.status, 200);
+    assert.equal(res.text, 'hello John');
+    done();
+  });
     });
     // #3
     test('Send {surname: "Colombo"}', function (done) {

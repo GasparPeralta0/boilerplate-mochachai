@@ -113,6 +113,9 @@ function testFilter(tests, type, n) {
     return getNumber(a) - getNumber(b);
   });
 
-  if (n !== undefined) return out[n] || out;
+  if (n !== undefined) {
+  const i = parseInt(n, 10);
+  return Number.isNaN(i) ? out : (out[i] || out);
+}
   return out;
 }

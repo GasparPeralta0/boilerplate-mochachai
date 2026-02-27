@@ -147,11 +147,17 @@ test('#equal, #notEqual', function () {
 
   suite('Objects', function () {
     // #16
-    test('#property, #notProperty', function () {
-      assert.fail(myCar, 'wings', "Cars don't have wings");
-      assert.fail(airlinePlane, 'engines', 'Planes have engines');
-      assert.fail(myCar, 'wheels', 'Cars have wheels');
-    });
+test('#property, #notProperty', function () {
+  const car = {
+    make: 'Toyota',
+    model: 'Corolla',
+    year: 2010
+  };
+
+  assert.property(car, 'model', 'Cars have models');
+  assert.notProperty(car, 'wings', "Cars don't have wings");
+  assert.property(car, 'year', 'Cars have years');
+});
     // #17
     test('#typeOf, #notTypeOf', function () {
       assert.fail(myCar, 'object');

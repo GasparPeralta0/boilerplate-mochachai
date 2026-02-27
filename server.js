@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 
 const runner = require('./test-runner');
 
-app.use(cors({ origin: '*' })); // FCC suele permitir esto
+app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -71,20 +71,25 @@ app.get(
   }
 );
 
-// Ejecuta el runner UNA sola vez
-runner.run();
+const port = process.env.PORT || 3000;
+app.listen(port, function () {
+  console.log('Listening on port ' + port);
+  console.log('Running Tests...');
 
-// Solo escuchar si se ejecuta directamente (compatibilidad FCC)
-if (!module.parent) {
-  const port = process.env.PORT || 3000;
-  app.listen(port, function () {
-    console.log('Listening on port ' + port);
-  });
-}
+  // correr tests UNA sola vez, después de levantar el server
+  setTimeout(function () {
+    try {
+      runner.run();
+    } catch (e) {
+      error = e;
+      console.log('Tests are not valid:');
+      console.log(error);
+    }
+  }, 1500);
+});
 
 module.exports = app;
 
-// --- helper ---
 function testFilter(tests, type, n) {
   let out;
   switch (type) {

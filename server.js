@@ -110,7 +110,7 @@ function testFilter(tests, type, n) {
  if (n !== undefined) {
   const i = parseInt(n, 10);
   if (Number.isNaN(i)) return [];
-  return out[i] ? out[i] : [];
+  return out[i] || { title: 'missing', context: '', state: 'failed', assertions: [] };
 }
 
   return out;

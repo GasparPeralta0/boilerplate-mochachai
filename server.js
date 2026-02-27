@@ -91,8 +91,7 @@ app.listen(port, function () {
 module.exports = app;
 
 function testFilter(tests, type, n) {
-  let out;
-
+   let out;
   switch (type) {
     case 'unit':
       out = tests.filter(t => t.context && t.context.includes('Unit Tests'));
@@ -103,19 +102,10 @@ function testFilter(tests, type, n) {
     default:
       out = tests;
   }
-
-  // 🔥 Ordenar por número de challenge (#1, #2, #3...)
-  out = out.slice().sort((a, b) => {
-    const getNumber = (t) => {
-      const match = t.title.match(/#(\d+)/);
-      return match ? parseInt(match[1], 10) : 999;
-    };
-    return getNumber(a) - getNumber(b);
-  });
-
+ 
   if (n !== undefined) {
-  const i = parseInt(n, 10);
-  return Number.isNaN(i) ? out : (out[i] || out);
-}
+    const i = parseInt(n, 10);
+    return Number.isNaN(i) ? out : (out[i] || out);
+  }
   return out;
 }

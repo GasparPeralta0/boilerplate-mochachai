@@ -92,27 +92,18 @@ module.exports = app;
 
 function testFilter(tests, type, n) {
   let out;
+
   switch (type) {
     case 'unit':
-      out = tests.filter(t => t.context.match('Unit Tests'));
+      out = tests.filter(t => t.context && t.context.includes('Unit Tests'));
       break;
     case 'functional':
-      out = tests.filter(t => t.context.match('Functional Tests'));
+      out = tests.filter(t => t.context && t.context.includes('Functional Tests'));
       break;
     default:
       out = tests;
-  }
+   }
 
-  // Ordenar por número de test (#1, #2, etc.)
-  out = out.slice().sort((a, b) => {
-    const getNum = (t) => {
-      const s = `${t.context || ''} ${t.title || ''}`;
-      const m = s.match(/#\s*(\d+)/);
-      return m ? parseInt(m[1], 10) : 9999;
-    };
-    return getNum(a) - getNum(b);
-  });
-
-  if (n !== undefined) return out[n] || out;
+   if (n !== undefined) return out[n] || out;
   return out;
 }

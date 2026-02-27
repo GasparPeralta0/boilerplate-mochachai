@@ -162,12 +162,12 @@ test('#typeOf, #notTypeOf', function () {
   assert.typeOf(myCar.wings, 'undefined', 'wings is undefined');
 });
     // #18
-    test('#instanceOf, #notInstanceOf', function () {
-      assert.fail(myCar, Plane);
-      assert.fail(airlinePlane, Plane);
-      assert.fail(airlinePlane, Object);
-      assert.fail(myCar.wheels, String);
-    })
+test('#instanceOf, #notInstanceOf', function () {
+  assert.instanceOf(myCar, Car, 'myCar is instance of Car');
+  assert.instanceOf(airlinePlane, Plane, 'airlinePlane is instance of Plane');
+  assert.instanceOf(airlinePlane, Object, 'airlinePlane is instance of Object');
+  assert.notInstanceOf(myCar.wheels, String, 'myCar.wheels is not instance of String');
+});
     })
   })
   }

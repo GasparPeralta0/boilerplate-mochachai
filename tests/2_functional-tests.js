@@ -90,7 +90,8 @@ suite('Functional Tests', function () {
         // #5
 test('Submit the surname "Colombo" in the HTML form', function (done) {
   browser.fill('surname', 'Colombo')
-    .then(() => browser.pressButton('submit'))
+    .then(() => browser.pressButton('button[type="submit"]'))
+    .then(() => browser.wait(200))
     .then(() => {
       browser.assert.success();
       browser.assert.text('span#name', 'Cristoforo');
